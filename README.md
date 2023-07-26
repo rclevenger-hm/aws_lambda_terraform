@@ -1,106 +1,82 @@
-```
+Sure! Here's the updated README for the AWS Lambda Terraform - Text Sentiment Analysis project:
+
+```markdown
 # AWS Lambda Terraform - Text Sentiment Analysis
 
-## Description
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-This is a serverless project that demonstrates text sentiment analysis using AWS Lambda and AWS Comprehend. The application provides an API endpoint that accepts text input from users and uses AWS Comprehend's natural language processing capabilities to determine the sentiment (positive, neutral, or negative) of the provided text.
+Welcome to the AWS Lambda Terraform project for Text Sentiment Analysis! This project demonstrates how to deploy an AWS Lambda function using Terraform to perform text sentiment analysis.
 
-## Table of Contents
+## Introduction
 
-- [Description](#description)
-- [Prerequisites](#prerequisites)
-- [Getting Started](#getting-started)
-  - [Terraform Configuration](#terraform-configuration)
-- [Usage](#usage)
-- [Cleanup](#cleanup)
-- [Contributing](#contributing)
-- [License](#license)
+This project provides an example implementation of a serverless text sentiment analysis application using AWS Lambda and Terraform. The Lambda function uses AWS Comprehend to analyze the sentiment of text data provided through an API Gateway endpoint.
+
+## Architecture
+
+The architecture of the project is as follows:
+
+1. The Lambda function is responsible for handling incoming text data and passing it to the AWS Comprehend service for sentiment analysis.
+
+2. The API Gateway serves as the entry point for incoming HTTP requests and triggers the Lambda function.
 
 ## Prerequisites
 
-To deploy and use this project, you'll need the following tools installed on your machine:
+Before getting started, ensure you have the following:
 
-- Terraform
-- AWS CLI with configured credentials
+- An AWS account with appropriate permissions to create Lambda functions and API Gateway resources.
+
+- Terraform installed on your local machine. You can download Terraform from the official website: https://www.terraform.io/downloads.html
 
 ## Getting Started
 
-Follow the steps below to set up the project and deploy the Text Sentiment Analysis application.
+1. Clone this repository to your local machine.
 
-### Terraform Configuration
+2. Navigate to the `terraform/` directory:
 
-1. Clone this repository:
-   ```bash
-   git clone <your-github-repo-url>
-   cd aws_lambda_terraform_text_sentiment
+   ```
+   cd terraform/
    ```
 
-2. Create a `config.json` file in the root of the `terraform/` directory with the following content:
+3. Create a file named `config.json` and set the desired AWS region:
 
    ```json
    {
-     "aws_region": "us-east-1"
+     "region": "us-east-1"
    }
    ```
 
-   Replace `"us-east-1"` with your desired AWS region for deployment.
-
-3. Navigate to the `terraform/` directory:
-   ```bash
-   cd terraform/
-   ```
-
 4. Initialize Terraform:
-   ```bash
+
+   ```
    terraform init
    ```
 
-5. Deploy the infrastructure resources using Terraform:
-   ```bash
+5. Deploy the Lambda function and API Gateway:
+
+   ```
    terraform apply
    ```
 
-   **Note:** Terraform will prompt you to confirm the changes. Type `yes` to proceed.
-
-After the Terraform deployment is complete, the API Gateway endpoint URL for the Text Sentiment Analysis application will be displayed in the Terraform output.
+6. After the deployment is complete, you will receive the API Gateway endpoint URL.
 
 ## Usage
 
-Once the project is deployed, you can interact with the Text Sentiment Analysis API:
+To perform text sentiment analysis, make a POST request to the API Gateway endpoint with the text data in the request body. The Lambda function will analyze the sentiment and return the result in the response.
 
-- Send a POST request to the API Gateway endpoint URL with the following payload:
+Example POST request using cURL:
 
-  ```json
-  {
-    "text": "Your text for sentiment analysis goes here."
-  }
-  ```
-
-  Replace `"Your text for sentiment analysis goes here."` with the text you want to analyze.
-
-- The API will return the sentiment analysis result (positive, neutral, or negative) based on the provided text.
+```bash
+curl -X POST -H "Content-Type: application/json" -d '{"text": "I love this product! It's amazing."}' <API_Gateway_URL>
+```
 
 ## Cleanup
 
-To remove the resources and clean up the environment, follow these steps:
+To remove the resources created by Terraform:
 
-1. Navigate to the `terraform/` directory:
-   ```bash
-   cd terraform/
-   ```
-
-2. Destroy the created infrastructure:
-   ```bash
-   terraform destroy
-   ```
-
-   **Note:** Terraform will prompt you to confirm the destruction. Type `yes` to proceed.
-
-## Contributing
-
-Contributions to this project are welcome. If you find any issues or want to add new features, feel free to submit a pull request.
+```
+terraform destroy
+```
 
 ## License
 
 The code in this project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-```
