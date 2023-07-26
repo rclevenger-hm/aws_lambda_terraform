@@ -1,6 +1,3 @@
-Sure! Here's the updated README for the AWS Lambda Terraform - Text Sentiment Analysis project:
-
-```markdown
 # AWS Lambda Terraform - Text Sentiment Analysis
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
